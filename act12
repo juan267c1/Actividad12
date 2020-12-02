@@ -1,0 +1,64 @@
+package act.pkg12.java;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Act12JAVA {
+
+  public static void main (String[] args) throws IOException{
+    Scanner sc = new Scanner(System.in);
+    BufferedReader lector = new BufferedReader(new InputStreamReader(System.in)); 
+
+    String salir ;
+    int opc;
+    HashMap<String,Integer> directorio= new HashMap();
+    String name;
+    int numero;
+    do{
+    System.out.println("Menu");
+    System.out.println("1) lista");
+    System.out.println("2) Agregar nuevo contacto");
+    System.out.println("3) Eliminar contacto");
+    opc=sc.nextInt();
+    switch(opc){
+        case 1:
+           for(Map.Entry<String, Integer> entry: directorio.entrySet()){
+               System.out.println("Nombre: "+entry.getKey()+"     Numero: "+entry.getValue());
+           }
+            break;
+        case 2:
+            System.out.println("Agregar Nombre de contacto");
+            name=lector.readLine();
+            System.out.println("Numero del contacto:");
+            numero=sc.nextInt();
+             if(!directorio.containsKey(name)){
+                 directorio.put(name, numero);
+                 System.out.println("agregado exitosamente ");
+             }else{
+                 System.out.println(" ya existe");
+             }
+            
+            break;
+        case 3:
+            System.out.println("Escriba el nombre del conctacto que desea eliminar");
+            name=lector.readLine();
+             if(directorio.containsKey(name)){
+                 directorio.remove(name);
+                 System.out.println("Contacto eliminado exitosamente ");
+             }else{
+                 System.out.println("El contacto no existe");
+             }
+            break;
+        
+    }
+    System.out.println("Repetir menu?\n 1 o 2");
+    salir=lector.readLine();
+       }while(salir.equals("1"));
+}
+}
+    
+    
